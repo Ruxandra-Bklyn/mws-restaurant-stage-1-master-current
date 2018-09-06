@@ -4,6 +4,13 @@ let restaurants,
 var newMap
 var markers = []
 
+// Service Worker registration
+if (navigator.serviceWorker){
+  navigator.serviceWorker.register('./sw.js')
+  .then(registration => console.log("Service Worker has been registered", registration))
+  .catch(error => console.log("Service Worker Registration did not register properly", error));
+}
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -14,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
- * Fetch all neighborhoods and set their HTML.
+ *  Set HTML for all neighborhoods.
  */
 fetchNeighborhoods = () => {
   DBHelper.fetchNeighborhoods((error, neighborhoods) => {

@@ -1,3 +1,4 @@
+/*
 var CACHE_NAME = 'v1';
 //Files to catch
 
@@ -83,4 +84,4 @@ self.addEventListener("fetch", function (event) {
             );
 
 })
-
+*/
