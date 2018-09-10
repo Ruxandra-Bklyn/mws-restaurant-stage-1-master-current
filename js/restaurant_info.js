@@ -89,8 +89,16 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
     const image = document.getElementById('restaurant-img');
     image.className = 'restaurant-img'
-    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    const imgurlbase = DBHelper.imageUrlForRestaurant(restaurant, 'banners');
+    const imgparts = imgurlbase.split('.');
+    const imgurl1x = imgparts[0] + ' _1x.jpg' + imgparts[1];
+    const imgurl2x = imgparts[0] + ' _2x.jpg' + imgparts[1];
+    image.src = imgurl1x;
+            
     image.setAttribute('alt', `Image of ${restaurant.name} restaurant`);
+    
+   
+    
     //image.setAttribute('tabindex', 'value above 0')
 
     const cuisine = document.getElementById('restaurant-cuisine');
@@ -157,6 +165,7 @@ createReviewHTML = (review) => {
     const li = document.createElement('li');
     const name = document.createElement('p');
     name.innerHTML = review.name;
+    name.className = "restaurant-review-user";
     li.setAttribute('tabindex', 'value above 0');
     li.appendChild(name);
     name.classList.add("review-name");
@@ -188,9 +197,13 @@ createReviewHTML = (review) => {
 fillBreadcrumb = (restaurant = self.restaurant) => {
     const breadcrumb = document.getElementById('breadcrumb');
     const li = document.createElement('li');
-    li.innerHTML = restaurant.name;
+   const a = document.createElement('a');
+    a.href = window.location;
+    a.innerHTML = restaurant.name;
+    a.setAttribute("aria-current", "page");
+    li.appendChild(a);
     breadcrumb.appendChild(li);
-}
+};
 
 /**
  * Get a parameter by name from page URL.

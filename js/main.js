@@ -95,27 +95,7 @@ initMap = () => {
 
   updateRestaurants();
 }
-/*
-window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
-    
-    google.maps.event.addDOMListener(window, "resize", function () {
-        map.setCenter(loc);
-    });
-  updateRestaurants();
-} 
-*/
-/**
- * Update page and map for current restaurants.
- */
+
 updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
@@ -172,10 +152,24 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  li.append(image);
+    //rename the name of these constants
+    const imgurlbase = DBHelper.imageUrlForRestaurant(restaurant, 'tiles');
+    const imgparts = imgurlbase.split('.');
+    const imgurl1x = imgparts[0] + '_1x.' + imgparts[1];
+    const imgurl2x = imgparts[0] + '_2x.' + imgparts[1];
+    image.src = imgurl1x;
+    image.srcset = `${imgurl1x} 300w, ${imgurl2x} 600w`;
+      //TODO: add alt and size images
+    image.alt = 'image of ' + restaurant.name + ' restaurant';
+     li.append(image);
+ 
+    
+    // Create text-area div
+    const div = document.createElement('div');
+    div.className = 'restaurant-text-area';
+    li.append(div);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -187,13 +181,17 @@ createRestaurantHTML = (restaurant) => {
   address.innerHTML = restaurant.address;
   li.append(address);
 
-  const more = document.createElement('a');
+  const more = document.createElement('button');
   more.innerHTML = 'View Details';
-  more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
-
-  return li
-}
+  more.onclick = function() {
+      
+      const url = DBHelper.urlForRestaurant(restaurant);
+      window.location = url;
+  }
+      div.append(more)
+      return li
+  }
+  
 
 /**
  * Add markers for current restaurants to the map.

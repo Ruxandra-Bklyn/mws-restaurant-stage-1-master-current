@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mediaQ.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <script type="application/javascript" charset="utf-8" src="sw.js"></script>
     <title>P5 | Restaurant Reviews</title>
 </head>
 
@@ -16,49 +17,45 @@
     <!--Beginning Header-->
     <header>
 
-            <nav> 
+        <nav>
 
-                <h1><a href="/" role="link">Restaurant Reviews</a></h1>
-            </nav>
-        
+            <h1><a href="/" role="link" tabindex="-1">Restaurant Reviews</a></h1>
+        </nav>
+
     </header>
     <!--Header end-->
 
-    <main id="maincontent" class="main-container">
-        <!--id given-->
-
-        <section id="map-container" aria-labelledby="region1">
-            <!--section given/original-->
-            <div class="container" id="map" role="region" aria-labelledby="map-region1"></div> <!-- id given-->
+    <main id="maincontent">
+        <section id="map-container" role="application" aria-labelledby="map-aria-description">
+            <div id="map"></div>
         </section>
 
-        <section id="filter">
-            <!--added id--change name later-->
-            <div class="filter-options" role="region" aria-labelledby="filter-region2">
-                <!-- class given-->
+        <label id="map-aria-description" class="map-aria-description">Leaflet Map data application</label>
 
-                <h2 id="region2" class="h2-filter">Filter Results</h2>
+        <section>
 
-                <div class="filter-selection">
-                    <!--div class="form" added -->
+            <div class="filter-options">
+                <h2>Filter Results</h2>
 
-                    <!--select id, name, option value given-->
+                <div class="filter-selects">
                     <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
                         <option value="all">All Neighborhoods</option>
                     </select>
-                </div>
+                    <label id="neighborhoods-label" class="filter-label">Filter by neighborhoods</label>
 
-                <!--select id, name, option value given-->
-                <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
-                    <option value="all">All Cuisines</option>
-                </select>
+                    <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+                        <option value="all">All Cuisines</option>
+                    </select>
+                    <label id="cuisine-label" class="filter-label">Filter by cuisines</label>
+
+                </div>
             </div>
-            
-            <!--id given-->
-            <ul class="restaurants" id="restaurants-list"></ul>
+            <ul id="restaurants-list"></ul>
         </section>
-        
+
     </main>
+
+
 
     <!--Scripts start here-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>

@@ -1,40 +1,52 @@
 /*All media queries here */
-
-@media screen and ( min-width: 550px) {
-    #map-container,
-    .filter{
-        display: flex;
-        justify-content: space-between;
-    }
-
-    img {
-        display: flex;
+@media (max-width: 60em) {
+    html {
+        font-size: 80%;
     }
 }
 
-@media screen and (max-width: 449px) {
+@media only screen and ( min-width: 0px) {
+    #restaurants-list li {
+    max-width: 100%;
+  }
+}
 
-    a {
-        font-size: 0.8em;
-    }
+@media only screen and (min-width: )
 
-  /*  .logo {
-        width: 40%;
-    }
-    .my-name {
-        font-size: 1.1em;
-    }
-
-    .my-title {
-        font-size: 0.9em;
+    #restaurants-list li {
+        
+        
     }
 
-    .sidenav_link {
-        padding-top: 35px;
-    }
 
-    .closebtn {
-        font-size: 0.9em;
-    }
+
+  /*  @media only screen and (min-width: 0px) {
+  #restaurants-list li {
+    max-width: 100%;
+  }
+}
+@media only screen and (min-width: 714px) {
+  #restaurants-list li {
+    max-width: 45%;
+  }
+  #restaurant-img {
+    margin-top: -40%;
+  }
+  .inside .restaurant-details,
+  .reviews-details {
+    flex-direction: row;
+  }
+  .inside #map-container {
+    width: 50%;
+  }
+  .inside .restaurant-address-hours {
+    width: 48%;
+  }
+}
+@media only screen and (min-width: 1050px) {
+  #restaurants-list li {
+    max-width: 300px;
+  }
+}
     */
 }
