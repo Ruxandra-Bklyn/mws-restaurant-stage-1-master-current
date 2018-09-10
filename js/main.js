@@ -160,7 +160,7 @@ createRestaurantHTML = (restaurant) => {
     image.src = imgurl1x;
     image.srcset = `${imgurl1x} 300w, ${imgurl2x} 600w`;
       //TODO: add alt and size images
-    image.alt = 'image of ' + restaurant.name + ' restaurant';
+    image.alt = 'Image of ' + restaurant.name + ' restaurant';
      li.append(image);
  
     

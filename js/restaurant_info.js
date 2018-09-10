@@ -91,20 +91,17 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     image.className = 'restaurant-img'
     const imgurlbase = DBHelper.imageUrlForRestaurant(restaurant, 'banners');
     const imgparts = imgurlbase.split('.');
-    const imgurl1x = imgparts[0] + ' _1x.jpg' + imgparts[1];
-    const imgurl2x = imgparts[0] + ' _2x.jpg' + imgparts[1];
+    const imgurl1x = imgparts[0] + '_1x.' + imgparts[1];
+    const imgurl2x = imgparts[0] + '_2x.' + imgparts[1];
     image.src = imgurl1x;
-            
+    image.srcset = `${imgurl1x} 500w, ${imgurl2x} 800w`;
     image.setAttribute('alt', `Image of ${restaurant.name} restaurant`);
-    
-   
     
     //image.setAttribute('tabindex', 'value above 0')
 
     const cuisine = document.getElementById('restaurant-cuisine');
     cuisine.innerHTML = restaurant.cuisine_type;
     //cuisine.setAttribute('tabindex', 'value above 0');
-
 
     // fill operating hours
     if (restaurant.operating_hours) {
