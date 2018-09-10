@@ -25,32 +25,34 @@
     </header>
     <!--Header end-->
 
-    <main id="maincontent">
-        <section id="map-container" role="application" aria-labelledby="map-aria-description">
+    <main id="maincontent" role="main">
+       
+        <section id="map-container" role="application" aria-label="Mapbox-map">
             <div id="map"></div>
         </section>
 
-        <label id="map-aria-description" class="map-aria-description">Leaflet Map data application</label>
+       <!-- <label id="map-aria-description" class="map-aria-description">Leaflet Map data application</label>
+        -->
 
         <section>
-
             <div class="filter-options">
                 <h2>Filter Results</h2>
 
                 <div class="filter-selects">
+                    <label id="select-neighborhood-label" class="filter-label">Filter by neighborhoods</label>
                     <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
                         <option value="all">All Neighborhoods</option>
                     </select>
-                    <label id="neighborhoods-label" class="filter-label">Filter by neighborhoods</label>
+
+                    <label id="select-cuisine-label" class="filter-label">Filter by cuisines</label>
 
                     <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
                         <option value="all">All Cuisines</option>
                     </select>
-                    <label id="cuisine-label" class="filter-label">Filter by cuisines</label>
 
                 </div>
             </div>
-            <ul id="restaurants-list"></ul>
+            <ul id="restaurants-list" role="region" aria-label="restaurant-list"></ul>
         </section>
 
     </main>
