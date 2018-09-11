@@ -1,7 +1,6 @@
 /**
  * Common database helper functions.
  */
-
 class DBHelper {
 
 
@@ -151,8 +150,8 @@ class DBHelper {
     /**
      * Restaurant image URL.
      */
-    static imageUrlForRestaurant(restaurant) {
-        return (`/img/$(type)/${restaurant.photograph}`);
+    static imageUrlForRestaurant(restaurant, type) {
+        return (`/img/${type}/${restaurant.photograph}`);
     }
 
     /**

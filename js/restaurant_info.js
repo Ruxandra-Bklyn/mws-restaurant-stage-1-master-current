@@ -2,10 +2,6 @@ let restaurant;
 var newMap;
 
 
-//Register service worker
-//DBHelper.registerServiceWorker();
-
-
 
 /**
  * Initialize leaflet map
@@ -81,28 +77,23 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
     const name = document.getElementById('restaurant-name');
     name.innerHTML = restaurant.name;
-   // name.setAttribute('tabindex', 'value above 0');
-
+    
     const address = document.getElementById('restaurant-address');
     address.innerHTML = restaurant.address;
-   // address.setAttribute('tabindex', 'value above 0');
-
+    
     const image = document.getElementById('restaurant-img');
     image.className = 'restaurant-img'
-    const imgurlbase = DBHelper.imageUrlForRestaurant(restaurant, 'banners');
-    const imgparts = imgurlbase.split('.');
-    const imgurl1x = imgparts[0] + '_1x.' + imgparts[1];
-    const imgurl2x = imgparts[0] + '_2x.' + imgparts[1];
-    image.src = imgurl1x;
-    image.srcset = `${imgurl1x} 500w, ${imgurl2x} 800w`;
-    image.setAttribute('alt', `Image of ${restaurant.name} restaurant`);
+    image.alt = 'Image of ' + restaurant.name + ' restaurant';
+    const imageLocation = DBHelper.imageUrlForRestaurant(restaurant, 'banners');
+    const splitImages = imageLocation.split('.');
+    const image1x = splitImages[0] + '_1x.' + splitImages[1];
+    const image2x = splitImages[0] + '_2x.' + splitImages[1];
+    image.src = image1x;
+    image.srcset = `${image1x} 500w, ${image2x} 800w`;
     
-    //image.setAttribute('tabindex', 'value above 0')
-
     const cuisine = document.getElementById('restaurant-cuisine');
     cuisine.innerHTML = restaurant.cuisine_type;
-    //cuisine.setAttribute('tabindex', 'value above 0');
-
+    
     // fill operating hours
     if (restaurant.operating_hours) {
         fillRestaurantHoursHTML();
@@ -111,6 +102,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     fillReviewsHTML();
 }
 
+  
 /**
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
@@ -118,7 +110,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     const hours = document.getElementById('restaurant-hours');
     for (let key in operatingHours) {
         const row = document.createElement('tr');
-//row.setAttribute('tabindex', 'value above 0');
+        //row.setAttribute('tabindex', 'value above 0');
         const day = document.createElement('td');
         day.innerHTML = key;
         row.appendChild(day);
@@ -136,10 +128,10 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     const container = document.getElementById('reviews-container');
-    const title = document.createElement('h2');
+    const title = document.createElement('h3');
     title.innerHTML = 'Reviews';
-  //title.setAttribute('tabindex', 'set value above 0');
-   // container.setAttribute('tabindex', 'set value above 0');
+    //title.setAttribute('tabindex', 'set value above 0');
+    // container.setAttribute('tabindex', 'set value above 0');
     container.appendChild(title);
 
     if (!reviews) {
@@ -194,7 +186,7 @@ createReviewHTML = (review) => {
 fillBreadcrumb = (restaurant = self.restaurant) => {
     const breadcrumb = document.getElementById('breadcrumb');
     const li = document.createElement('li');
-   const a = document.createElement('a');
+    const a = document.createElement('a');
     a.href = window.location;
     a.innerHTML = restaurant.name;
     a.setAttribute("aria-current", "page");
@@ -219,7 +211,7 @@ getParameterByName = (name, url) => {
 }
 
 
- /* Initialize map as soon as the page is loaded.
+/* Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
     initMap();

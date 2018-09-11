@@ -1,5 +1,5 @@
-/*
-var CACHE_NAME = 'v1';
+var cacheID = "mws-restaurant-stage-1";
+
 //Files to catch
 
 var urlsToCache = [
@@ -73,7 +73,7 @@ self.addEventListener('install', function (event) {
     //Delay the event until the Promise is resolved
 
     event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
+        caches.open(cacheID).then(function (cache) {
             console.log("[ServiceWorker] Caching cacheFiles");
             return cache.addAll(urlsToCache);
         })
@@ -108,7 +108,7 @@ self.addEventListener("fetch", function (event) {
 
                         var responseClone = response.clone();
 
-                        caches.open(CACHE_NAME)
+                        caches.open(cacheID)
                         .then(function(cache) {
                             cache.put(event.request, responseClone);
                             console.log("[ServiceWorker] New Data Cached", event.request.url);
@@ -124,4 +124,4 @@ self.addEventListener("fetch", function (event) {
             );
 
 })
-*/
+

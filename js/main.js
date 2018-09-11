@@ -149,22 +149,21 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
-
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-    //rename the name of these constants
-    const imgurlbase = DBHelper.imageUrlForRestaurant(restaurant, 'tiles');
-    const imgparts = imgurlbase.split('.');
-    const imgurl1x = imgparts[0] + '_1x.' + imgparts[1];
-    const imgurl2x = imgparts[0] + '_2x.' + imgparts[1];
-    image.src = imgurl1x;
-    image.srcset = `${imgurl1x} 300w, ${imgurl2x} 600w`;
+    const imageLocation = DBHelper.imageUrlForRestaurant(restaurant, 'tiles');
+    const splitImages = imageLocation.split('.');
+    const image1x = splitImages[0] + '_1x.' + splitImages[1];
+    const image2x = splitImages[0] + '_2x.' + splitImages[1];
+    image.src = image1x;
+    image.srcset = `${image1x} 300w, ${image2x} 600w`;
       //TODO: add alt and size images
     image.alt = 'Image of ' + restaurant.name + ' restaurant';
      li.append(image);
- 
+    
     
     // Create text-area div
+    
     const div = document.createElement('div');
     div.className = 'restaurant-text-area';
     li.append(div);

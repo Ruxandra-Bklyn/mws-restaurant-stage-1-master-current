@@ -27,7 +27,7 @@
     <!-- Beginning breadcrumb -->
     <nav aria-label="Breadcrumb">
     <!--id given-->
-    <ol id="breadcrumb" >
+    <ol id="breadcrumb" role="navigation" aria-label="breadcrumb" >
       <li><a href="/">Home</a></li>
     </ol>
       </nav>
@@ -51,19 +51,25 @@
       <p id="restaurant-cuisine"></p>
       </section>
       
-      <section id="rest-address-and-hours">
+      <!--Restaurant address and hours -->
+      
+      <section id="restaurantAddressHours">
+      <label id="restaurant-address-label" class="info-label">restaurant address</label>
       <p id="restaurant-address" aria-labelledby="restaurant-address-label"></p>
-      <label id="restaurant-address-label" class="restaurant-info-label">restaurant address</label>
+      
       
        <!-- Beginning map -->
+       
+    <label id="restaurant-hours-label"role="application" class="info-label" >Mapbox Map Application</label>
+    
     <section id="map-container" role="application" aria-labelledby="map-aria-description"> <!--id given-->
       <div id="map"></div> <!--id given-->
-      <label id="restaurant-hours-label"role="application" class="map-aria-description">Leaflet Map Application</label>
+      
     </section>
     <!-- End map -->
      <div class="restaurant-hours-table">
       <table id="restaurant-hours" aria-labelledby="restaurant-hours label"></table>
-      <label id="restaurant-hours-label" class="restaurant-info-label">Hours Of Operation</label>
+      <label id="restaurant-hours-label" class="info-label">Hours Of Operation</label>
       </div>
     </section>
     <!-- End restaurant -->
@@ -92,5 +98,4 @@
   <!-- End scripts -->
 
 </body>
-
 </html>
